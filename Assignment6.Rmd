@@ -1,0 +1,177 @@
+---
+title: "Assignment6_Mapping Bude"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+Find the town of Bude in Western England. This is a town that is well-known as a beach resort. You're going to make two maps of Bude – a road map and a watercolor map.
+
+On both maps, mark the map with vacation spots you might like: surfing beaches and the cricket grounds (one of the most stunning the the country and very local). Pick two local beaches (this will require some googling).
+
+Finally find a pub that is convenient to the cricket grounds. Mark the route from the grounds to the pub.
+
+
+```{r include=FALSE}
+library(ggmap)
+library(tidyverse)
+# Bude
+gc_Bude <- geocode("Bude, England, UK")
+map_Bude_road <- get_map(gc_Bude, maptype = "roadmap", zoom=15)
+if (lon < -180 || lon > 180) { TRUE}
+map_Bude_water <- get_map(gc_Bude, maptype = "watercolor",zoom=15)
+
+data_Bude <- gc_Bude
+
+#Bude_Road Map
+ggmap(map_Bude_road) +
+  geom_point(
+    aes(x = lon, y = lat),
+    data = gc_Bude, color = "red", size = 3
+  )
+
+#Bude_Water Map
+ggmap(map_Bude_water) +
+  geom_point(
+    aes(x = lon, y = lat),
+    data = gc_Bude, color = "red", size = 3
+  )
+
+```
+
+## Cricket ground: Bude North Cornwall Cricket Club
+Bude North Cornwall Cricket Club is situated on the clifftops overlooking the Atlantic Ocean, and is quite simply one of the most stunning locations you could ever wish to visit, let alone play cricket at! 
+Bude North Cornwall Cricket Club was founded in 1870. Over the years it has played host to Hockey matches, Tennis, Cricket and even used for Mortar practice in WW2!
+Bude played only friendly matches until the late 1970's, entertaining local and touring sides throughout the summer months. Since joining the Cornwall Cricket League the club has held various league honours and still continues to host touring teams from around the world. 
+
+![cricket photo.jpg](/Users/yinchiahuang/Library/Mobile Documents/com~apple~CloudDocs/MA615/Assignments/Assignment6/cricket photo.jpg =100x20)
+
+```{r include=FALSE}
+#Cricket ground: Bude North Cornwall Cricket Club
+gc_NorthCornwall <- geocode("Bude North Cornwall Cricket Club")
+map_NorthCornwall <- get_map(gc_NorthCornwall)
+
+bb_NorthCornwall <- attr(map_NorthCornwall, "bb")
+bbox_NorthCornwall <- bb2bbox(bb_NorthCornwall)
+
+ggmap(map_NorthCornwall) +
+  geom_point(
+    aes(x = lon, y = lat),
+    data = gc_NorthCornwall, color = "Red", size = 3
+  )
+
+data_cricket <- gc_NorthCornwall
+
+```
+
+## Beach1: Sandy Mouth Beach
+Large (2km long) pebbley beach with lots of sand at lower tides when it connects up with other Bude beaches.
+There are lots of interesting rock formations and pools along the length of the beach. Along with clean water Sandy Mouth is a good family beach.
+
+![sandymouth.jpg](/Users/yinchiahuang/Library/Mobile Documents/com~apple~CloudDocs/MA615/Assignments/Assignment6/sandymouth.jpg)
+
+```{r include=FALSE}
+gc_SandyMouth <- geocode("S W Coast Path, Bude EX23, UK")
+map_SandyMouth <- get_map(gc_SandyMouth, zoom=16)
+
+bb_SandyMouth <- attr(map_SandyMouth, "bb")
+bbox_SandyMouth <- bb2bbox(bb_SandyMouth)
+
+ggmap(map_SandyMouth) +
+  geom_point(
+    aes(x = lon, y = lat),
+    data = gc_SandyMouth, color = "green", size = 4
+  )
+
+data_beach1<-gc_SandyMouth
+```
+
+
+## Beach2: Summerleaze Beach
+Located within easy walking distance of Bude town centre Summerleaze is a popular beach. However, the extensive sands in every direction mean at anything except high tide it is unlikely to feel crowded.
+Summerleaze is also an unusually interesting beach with a large breakwater complete with tower protecting a small harbour and the mouth of the Bude canal with its massive lock gates. On the opposite side of the beach there's a sea-water bathing pool making for safe bathing whatever the conditions. Backing onto the beach are grassy downs and the River Neet.
+
+![Summerleaze.jpg](/Users/yinchiahuang/Library/Mobile Documents/com~apple~CloudDocs/MA615/Assignments/Assignment6/Summerleaze.jpg)
+
+```{r include=FALSE}
+gc_Summerleaze <- geocode("Summerleaze Cres, Bude EX23 8HN, UK")
+map_Summerleaze <- get_map(gc_Summerleaze)
+
+bb_Summerleaze <- attr(map_Summerleaze, "bb")
+bbox_Summerleaze <- bb2bbox(bb_Summerleaze)
+
+ggmap(map_Summerleaze) +
+  geom_point(
+    aes(x = lon, y = lat),
+    data = gc_Summerleaze, color = "green", size = 3
+  )
+
+data_beach2 <- gc_Summerleaze
+```
+
+
+## Nearby Pub : Bar 35
+Bar 35 specialises in live music events, supporting local and national bands across multiple genres including: indie, rock, soul, blues, acoustic and many more. Our live music events run all year, every Saturday as standard, and Fridays joining the set list during the summer months. Check out our events page and Facebook page for upcoming performance dates and artists.
+![Bar35.jpg](/Users/yinchiahuang/Library/Mobile Documents/com~apple~CloudDocs/MA615/Assignments/Assignment6/Bar35.jpg)
+
+## Route from Cricket ground to nearby pub 
+```{r echo=FALSE}
+from <- "Bar 35, Belle Vue Ln, Bude EX23 8BR, UK"
+to <- "Bude North Cornwall Cricket Club"
+route_df <- route(from, to, structure = "route")
+
+map_Bude_road <- get_map(gc_Bude, maptype = "roadmap", zoom=16)
+ggmap(map_Bude_road) +  
+  geom_path(
+    aes(x = lon, y = lat), colour = "red", size = 1.5,
+    data = route_df, lineend = "round"
+  )
+
+gc_Bar35 <- geocode("16 Erdiston Ct, Bude EX23, UK")
+data_pub <- gc_Bar35
+
+```
+
+```{r include=FALSE}
+#create a data frame containing all locations
+lon_all <- as.numeric(c( data_cricket[1], data_beach1[1],data_beach2[1],data_pub[1]))
+lat_all <- as.numeric(c( data_cricket[2],data_beach1[2],data_beach2[2], data_pub[2]))
+allData <- data.frame(lon=lon_all, lat=lat_all)
+
+```
+
+## Road map with vacation spots
+- red: Bude North Cornwall Cricket Club
+- yellow: Sandy Mouth Beach
+- green: Summerleaze Beach
+- blue: Bar 35
+```{r echo=FALSE}
+ggmap(map_Bude_road) +
+  geom_point(aes(x = lon, y = lat), data = data_cricket, color = "Red", size = 3)+
+  geom_point(aes(x = lon, y = lat), data = data_beach1, color = "yellow" , size = 3)+
+  geom_point(aes(x = lon, y = lat), data = data_beach2,color = "Green" , size = 3)+
+  geom_point(aes(x = lon, y = lat), data = data_pub, color = "Blue" , size = 3)
+ 
+```
+
+## Water color  map with vacation spots
+- red: Bude North Cornwall Cricket Club
+- yellow: Sandy Mouth Beach
+- green: Summerleaze Beach
+- blue: Bar 35
+```{r echo=FALSE}
+
+ggmap(map_Bude_water) +
+  geom_point(aes(x = lon, y = lat), data = data_cricket, color = "Red", size = 3)+
+  geom_point(aes(x = lon, y = lat), data = data_beach1, color = "yellow" , size = 3)+
+  geom_point(aes(x = lon, y = lat), data = data_beach2,color = "Green" , size = 3)+
+  geom_point(aes(x = lon, y = lat), data = data_pub, color = "Blue" , size = 3)
+
+```
+
+
+
+

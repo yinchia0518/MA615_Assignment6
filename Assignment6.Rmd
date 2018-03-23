@@ -29,14 +29,14 @@ Bude North Cornwall Cricket Club is situated on the clifftops overlooking the At
 Bude North Cornwall Cricket Club was founded in 1870. Over the years it has played host to Hockey matches, Tennis, Cricket and even used for Mortar practice in WW2!
 Bude played only friendly matches until the late 1970's, entertaining local and touring sides throughout the summer months. Since joining the Cornwall Cricket League the club has held various league honours and still continues to host touring teams from around the world. 
 
-![cricket photo.jpg](/Users/yinchiahuang/Library/Mobile Documents/com~apple~CloudDocs/MA615/Assignments/Assignment6/cricket photo.jpg )
+![cricket photo.jpg](/Users/yinchiahuang/Library/Mobile Documents/com~apple~CloudDocs/MA615/Assignments/Assignment6/cricket photo.jpg ){width=60%}
 
 
 ## Beach1: Sandy Mouth Beach
 Large (2km long) pebbley beach with lots of sand at lower tides when it connects up with other Bude beaches.
 There are lots of interesting rock formations and pools along the length of the beach. Along with clean water Sandy Mouth is a good family beach.
 
-![sandymouth.jpg](/Users/yinchiahuang/Library/Mobile Documents/com~apple~CloudDocs/MA615/Assignments/Assignment6/sandymouth.jpg)
+![sandymouth.jpg](/Users/yinchiahuang/Library/Mobile Documents/com~apple~CloudDocs/MA615/Assignments/Assignment6/sandymouth.jpg){width=60%}
 
 
 
@@ -44,13 +44,13 @@ There are lots of interesting rock formations and pools along the length of the 
 Located within easy walking distance of Bude town centre Summerleaze is a popular beach. However, the extensive sands in every direction mean at anything except high tide it is unlikely to feel crowded.
 Summerleaze is also an unusually interesting beach with a large breakwater complete with tower protecting a small harbour and the mouth of the Bude canal with its massive lock gates. On the opposite side of the beach there's a sea-water bathing pool making for safe bathing whatever the conditions. Backing onto the beach are grassy downs and the River Neet.
 
-![Summerleaze.jpg](/Users/yinchiahuang/Library/Mobile Documents/com~apple~CloudDocs/MA615/Assignments/Assignment6/Summerleaze.jpg)
+![Summerleaze.jpg](/Users/yinchiahuang/Library/Mobile Documents/com~apple~CloudDocs/MA615/Assignments/Assignment6/Summerleaze.jpg){width=60%}
 
 
 ## Nearby Pub : Bar 35
 Bar 35 specialises in live music events, supporting local and national bands across multiple genres including: indie, rock, soul, blues, acoustic and many more. Our live music events run all year, every Saturday as standard, and Fridays joining the set list during the summer months. Check out our events page and Facebook page for upcoming performance dates and artists.
 
-![Bar35.jpg](/Users/yinchiahuang/Library/Mobile Documents/com~apple~CloudDocs/MA615/Assignments/Assignment6/Bar35.jpg)
+![Bar35.jpg](/Users/yinchiahuang/Library/Mobile Documents/com~apple~CloudDocs/MA615/Assignments/Assignment6/Bar35.jpg){width=60%}
 
 ## Route from Cricket ground to nearby pub 
 ```{r echo=FALSE}

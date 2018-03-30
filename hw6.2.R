@@ -115,5 +115,28 @@ all_spots_Watermap <- ggmap(map_Bude_water) +
   geom_text(aes(x = lon, y = lat, label="Bar 35"), data = data_pub, vjust=0, hjust=0,size=3)+
   geom_path(aes(x = lon, y = lat), colour = "red", size = 1,data = route_df, lineend = "round")
 
+# Adding 2 Hotels 
+gc_Hotel1 <- geocode("The Beach At Bude, Bude")
+data_Hotel1 <- as.data.frame(gc_Hotel1)
+map_Hotel1 <- get_map(data_Hotel1, zoom=15)
+Hotel1_RoadMap <- ggmap(map_Hotel1) + 
+  geom_point(aes(x = lon, y = lat), data = data_Hotel1, color = "purple", size = 3) +
+  geom_text(aes(x = lon, y = lat, label="The Beach At Bude"), data = data_Hotel1, vjust=1.5,size=3)
+Hotel1_RoadMap
+
+gc_Hotel2 <- geocode("Sea Jade Guest House, Bude")
+data_Hotel2 <- as.data.frame(gc_Hotel2)
+map_Hotel2 <- get_map(data_Hotel2, zoom=15)
+Hotel2_RoadMap <- ggmap(map_Hotel2) + 
+  geom_point(aes(x = lon, y = lat), data = data_Hotel2, color = "orange", size = 3) +
+  geom_text(aes(x = lon, y = lat, label="Sea Jade Guest House"), data = data_Hotel2, vjust=1.5,size=3)
+Hotel2_RoadMap
+
+# Adding Hotel Pictures
+library(magick)
+Hotel1 <- image_scale(image_read('https://t-ec.bstatic.com/images/hotel/max1280x900/121/121973945.jpg'))
+print(Hotel1)
+Hotel2 <- image_scale(image_read('https://t-ec.bstatic.com/images/hotel/max1280x900/526/52605266.jpg'))
+print(Hotel2)
 
 
